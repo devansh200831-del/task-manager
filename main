@@ -102,6 +102,28 @@ header = ctk.CTkFrame(
 header.pack(side="top", fill="x")
 header.pack_propagate(False)
 
+#seach bar 
+searchimage=ctk.CTkImage(light_image=Image.open("icon/search.png"),
+                         size=(20,20))
+searchlabel=ctk.CTkLabel(header,text=None,image=searchimage,compound="left",corner_radius=12,fg_color="transparent",anchor="w")
+searchlabel.pack(side="left",padx=15)
+
+search = ctk.CTkEntry(
+    header,
+    width=300,
+    height=38,
+    corner_radius=18,
+    placeholder_text="Search tasks...",
+    border_width=0,
+    fg_color="#F3F4F6"
+)
+search.pack(
+    side="left",
+    padx=20,
+    pady=16
+)
+
+
 # CONTENT CANVAS: Fills up the remaining space perfectly
 content = ctk.CTkFrame(
     window, 
