@@ -1,0 +1,19 @@
+import tkinter as tk
+from tkinter import ttk
+window=tk.Tk() #initanlinzin window
+window.title("Task manager")#title
+window.geometry("500x400")#its size
+
+
+#wokring wiht labeles
+ #task label
+task=tk.Label(window,text="Tasksadded")
+task.grid(row=0,column=0,sticky="w",rowspan=3)
+#tobedone
+tobedone=tk.Label(window,text="tobedone")
+tobedone.grid(row=4,column=0,sticky="w",rowspan=3)
+#done
+done=tk.Label(window,text="done")
+done.grid(row=8,column=0,sticky="W",rowspan=3)
+window.mainloop()#its mian working
+
