@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import cal
 from PIL import Image
 
 # 1. ALWAYS use ctk.CTk() when building with CustomTkinter
@@ -55,10 +56,15 @@ calender = ctk.CTkButton(
     anchor="w",
     fg_color="transparent",
     text_color="#1C1C1E",
-    corner_radius=12 # Matches Dashboard's bubble shape
+    corner_radius=12,
+     command=lambda: cal.open_calendar(window) # Matches Dashboard's bubble shape
+        
 )
 # Balanced vertical margin so it sits neatly under Dashboard
 calender.pack(fill="x", padx=10, pady=2) 
+#creating pop uup calender
+
+
 
 #archive button setup
 archiveicon=ctk.CTkImage(light_image=Image.open("icon/archive.png"),
