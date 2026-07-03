@@ -1,19 +1,116 @@
-import tkinter as tk
-from tkinter import ttk
-window=tk.Tk() #initanlinzin window
-window.title("Task manager")#title
-window.geometry("500x400")#its size
+import customtkinter as ctk
+from PIL import Image
+
+# 1. ALWAYS use ctk.CTk() when building with CustomTkinter
+window = ctk.CTk() 
+window.title("Task manager")
+window.geometry("1200x800")
+window.configure(fg_color="#F5F5F7")
+
+# --- PHASE 2: LAYOUT ---
+
+# SIDEBAR FIRST: This allows it to span the absolute full height (top to bottom)
+sidebar = ctk.CTkFrame(
+    window, 
+    fg_color="#FFFFFF", 
+    width=220, 
+    border_color="green", 
+    border_width=2
+)
+sidebar.pack(side="left", fill="y")
+sidebar.pack_propagate(False)
+
+# --- SIDEBAR BUTTONS ---
+
+# 1. Dashboard Button Setup
+mytasksicon = ctk.CTkImage(
+    light_image=Image.open("icon/task-management.png"),
+    size=(20, 20)
+)
+
+mytasks = ctk.CTkButton(
+    sidebar,
+    text="   Dashboard", # Added 3 spaces for uniform alignment
+    image=mytasksicon,
+    compound="left",
+    anchor="w",
+    fg_color="transparent",
+    text_color="#1C1C1E",
+    corner_radius=12 # Rounded, but not overly distorted pill shape
+)
+# Big top margin to clear the ceiling, tight bottom margin
+mytasks.pack(fill="x", padx=10, pady=(20, 2)) 
+
+# 2. Planner Button Setup
+calendericon = ctk.CTkImage(
+    light_image=Image.open("icon/calendar.png"),
+    size=(20, 20)
+)
+
+calender = ctk.CTkButton(
+    sidebar,
+    text="   Planner", # Added 3 spaces to perfectly match Dashboard's alignment
+    image=calendericon,
+    compound="left",
+    anchor="w",
+    fg_color="transparent",
+    text_color="#1C1C1E",
+    corner_radius=12 # Matches Dashboard's bubble shape
+)
+# Balanced vertical margin so it sits neatly under Dashboard
+calender.pack(fill="x", padx=10, pady=2) 
+
+#archive button setup
+archiveicon=ctk.CTkImage(light_image=Image.open("icon/archive.png"),
+                         size=(20,20))
+archive=ctk.CTkButton(sidebar,
+                      text="archive",
+                      image=archiveicon,
+                      compound="left",
+                      anchor="w",
+                      fg_color="transparent",
+                      text_color="#1C1C1E",
+                      corner_radius=12
+                      )
+archive.pack(fill="x",padx=10, pady=2)
+
+#settin button setup
+settingicon=ctk.CTkImage(light_image=Image.open("icon/settings.png"),
+                         size=(20,20))
+setting=ctk.CTkButton(sidebar,
+                      text="settings",
+                      image=settingicon,
+                      compound="left",
+                      anchor="w",
+                      fg_color="transparent",
+                      text_color="#1C1C1E",
+                      corner_radius=12
+                      )
+setting.pack(side="bottom",fill="x",padx=10, pady=(10,30))
 
 
-#wokring wiht labeles
- #task label
-task=tk.Label(window,text="Tasksadded")
-task.grid(row=0,column=0,sticky="w",rowspan=3)
-#tobedone
-tobedone=tk.Label(window,text="tobedone")
-tobedone.grid(row=4,column=0,sticky="w",rowspan=3)
-#done
-done=tk.Label(window,text="done")
-done.grid(row=8,column=0,sticky="W",rowspan=3)
-window.mainloop()#its mian working
 
+
+# HEADER SECOND: Now it fills the remaining top width next to the sidebar
+header = ctk.CTkFrame(
+    window, 
+    fg_color="#FFFFFF", 
+    height=70, 
+    border_color="green", 
+    border_width=2
+)
+header.pack(side="top", fill="x")
+header.pack_propagate(False)
+
+# CONTENT CANVAS: Fills up the remaining space perfectly
+content = ctk.CTkFrame(
+    window, 
+    fg_color="#FFFFFF", 
+    corner_radius=16, 
+    border_color="red", 
+    border_width=2
+)
+content.pack(side="left", fill="both", expand=True, padx=20, pady=20)
+
+
+window.mainloop()
