@@ -60,8 +60,12 @@ def open_calendar(parent):
 
         back_button = ctk.CTkButton(popup,text="←",command=close)
         back_button.pack(side="bottom",padx=10, pady=10)
-        move=ctk.CTkLabel(popup,fg_color="Blue",corner_radius=28,text="")
-        move.pack(side="bottom",fill="both",expand=True)                
+        move=ctk.CTkFrame(popup,fg_color="transparent",corner_radius=28)
+        move.pack( side="bottom",fill="x",padx=10,pady=10)    
+        previous=ctk.CTkButton(move, text="←",width=40,text_color="blue")
+        previous.pack(side="left") 
+        next=ctk.CTkButton(move, text="→",width=40,text_color="blue")
+        next.pack(side="right")        
         
 
 
