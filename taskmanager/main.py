@@ -1,6 +1,7 @@
 import customtkinter as ctk
 import cal
 from PIL import Image
+from datetime import datetime as dk
 
 # 1. ALWAYS use ctk.CTk() when building with CustomTkinter
 window = ctk.CTk() 
@@ -129,6 +130,23 @@ search.pack(
     padx=20,
     pady=16
 )
+datetime=ctk.CTkLabel(header,text="",)
+date=ctk.CTkLabel(header,text="")
+def updatecurrenttime():
+    currenttime=dk.now().strftime("%I:%M:%S %p")
+    currentdate=dk.now().strftime("%B %D %Y")
+    datetime.configure(text=currenttime)
+    date.configure(text=currentdate)
+    
+    window.after(1000,updatecurrenttime)
+updatecurrenttime()    
+
+
+
+datetime.pack(side="right",padx=20,pady=20)
+date.pack(side="right",pady=20,anchor="e")
+
+
 
 
 # CONTENT CANVAS: Fills up the remaining space perfectly

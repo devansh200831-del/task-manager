@@ -9,7 +9,7 @@ def open_calendar(parent):
      else:
         popup = ctk.CTkToplevel(parent)
         popup.title("Planner")
-        popup.geometry("350x400")
+        popup.geometry("420x400")
         popup.configure(fg_color="#FFFFFF")
         popup.resizable(False, False)
         popup.focus()
@@ -32,9 +32,9 @@ def open_calendar(parent):
                  )
 
              label.grid(row=0, column=column, padx=5, pady=5)
-             listweek=calendar.monthcalendar(dt.now().year,dt.now().month)
+        listweek=calendar.monthcalendar(dt.now().year,dt.now().month)
 
-             for week in range(len(listweek)):
+        for week in range(len(listweek)):
                  for day,date in enumerate(listweek[week]):
                      if date!=0:
                          datelabel=ctk.CTkLabel(calendar_frame,text=str(date),width=35,height=35,corner_radius=18)
@@ -44,6 +44,12 @@ def open_calendar(parent):
                          datelabel=ctk.CTkLabel(calendar_frame,text="",width=35,height=35,corner_radius=18)
             
                          datelabel.grid(row=1+week ,column=day,padx=5,pady=5)
+
+        #moving cal
+       
+                       
+     
+
      
         def close():
          global popup
@@ -54,6 +60,9 @@ def open_calendar(parent):
 
         back_button = ctk.CTkButton(popup,text="←",command=close)
         back_button.pack(side="bottom",padx=10, pady=10)
+        move=ctk.CTkLabel(popup,fg_color="Blue",corner_radius=28,text="")
+        move.pack(side="bottom",fill="both",expand=True)                
+        
 
 
 

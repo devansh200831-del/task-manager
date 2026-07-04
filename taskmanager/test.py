@@ -3,7 +3,6 @@ import calendar
 from datetime import datetime as dt
 import datetime
 listweek=calendar.monthcalendar(dt.now().year,dt.now().month)
-print(listweek)
 
 for week in range(len(listweek)):
     for day,date in enumerate(listweek[week]):
@@ -12,5 +11,7 @@ for week in range(len(listweek)):
             
             datelabel.grid(row=1+week ,column=day,padx=5,pady=5)
         else:
-            continue    
+            datelabel=ctk.CTkLabel(popup,text="",width=35,height=35)
+            
+            datelabel.grid(row=1+week ,column=day,padx=5,pady=5)
 
