@@ -12,7 +12,8 @@ def close():
     if popup is not None:
         popup.destroy()
         popup=None
-    current=date(dt.now().year,dt.now().month,dt.now().day)  
+        calendar_frame=None
+        current=date(dt.now().year,dt.now().month,dt.now().day)  
   
 
 def prev():
@@ -88,7 +89,7 @@ def open_calendar(parent):
         previous.pack(side="left") 
         nextbt=ctk.CTkButton(move, text="→",width=40,text_color="blue",command=next)
         nextbt.pack(side="right") 
-        dateforcal=ctk.CTkButton(move,text=current.year-current.month,,text_color="blue")
+        dateforcal=ctk.CTkLabel(move,text=current.strftime("%B %Y"),text_color="blue")
         dateforcal.pack() 
         drawcal(calendar_frame)
 
