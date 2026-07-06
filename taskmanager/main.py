@@ -1,7 +1,10 @@
 import customtkinter as ctk
+import tkinter as tk
 import cal
 from PIL import Image
 from datetime import datetime as dk
+import content
+import json
 
 # 1. ALWAYS use ctk.CTk() when building with CustomTkinter
 window = ctk.CTk() 
@@ -22,7 +25,7 @@ sidebar = ctk.CTkFrame(
 sidebar.pack(side="left", fill="y")
 sidebar.pack_propagate(False)
 
-# --- SIDEBAR BUTTONS ---
+# --- SIDEBAR BUTTONS ---git
 
 # 1. Dashboard Button Setup
 mytasksicon = ctk.CTkImage(
@@ -150,14 +153,35 @@ date.pack(side="right",pady=20,anchor="e")
 
 
 # CONTENT CANVAS: Fills up the remaining space perfectly
-content = ctk.CTkFrame(
+contenttab = ctk.CTkFrame(
     window, 
     fg_color="#FFFFFF", 
     corner_radius=16, 
     border_color="red", 
     border_width=2
 )
-content.pack(side="left", fill="both", expand=True, padx=20, pady=20)
+contenttab.pack(side="left", fill="both", expand=True, padx=20, pady=20)
+
+addtaskbutton=ctk.CTkButton(contenttab,text="+ ADD TASK", fg_color="transparent",text_color="#1C1C1E",
+                            corner_radius=12,command= lambda:content.addtaskwin(window))
+addtaskbutton.grid(row=0,column=10,columnspan=3)
+with open("taskmanager/tasks.json", "r") as file:
+        data=json.load(file)
+for i, task in enumerate(reversed(data["tasks"])):
+    label = ctk.CTkLabel(
+        contenttab,
+        text=task["title"]
+    )
+    label.grid(row=i+1, column=0)
+    label.grid(
+    row=i+1,
+    column=0,
+    padx=20,
+    pady=10,
+    sticky="w"
+      )
+
+
 
 
 window.mainloop()
